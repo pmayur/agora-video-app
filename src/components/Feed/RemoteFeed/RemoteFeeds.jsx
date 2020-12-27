@@ -5,6 +5,7 @@ class RemoteFeeds extends React.Component {
     componentDidUpdate() {
         let feedsIdList = Object.keys(this.props.feedsList)
 
+        // on update i.e. new stream received, play new stream
         feedsIdList.forEach( id => {
             this.props.feedsList[id].play(`remote-feed-${id}`)
         })
@@ -18,6 +19,7 @@ class RemoteFeeds extends React.Component {
             margin: '10px'
         }
 
+        // array of all stream
         const feedsList = Object.values(this.props.feedsList);
 
         return (

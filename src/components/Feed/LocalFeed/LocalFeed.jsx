@@ -20,7 +20,6 @@ class LocalFeed extends React.Component {
         // bindings
         this.toggleAudioMuteUnmute = this.toggleAudioMuteUnmute.bind(this)
         this.toggleVideoMuteUnmute = this.toggleVideoMuteUnmute.bind(this)
-
     }
 
     localFeed = AgoraRTC.createStream({
@@ -35,6 +34,14 @@ class LocalFeed extends React.Component {
         this.initializeAgoraClient()
         this.joinClientChannel()
     }
+
+    /*
+        FLOW:
+        1.) create a local stream using webcam and mic (this.createLocalFeed())
+        2.) initialize agora client with developer app id (this.initializeAgoraClient())
+        3.) create a channel on agora client (this.joinClientChannel())
+        4.) publish localstream to the channel (callback of this.joinClientChannel())
+    */
 
     createLocalFeed = () => {
         return new Promise((resolve, reject) => {
@@ -96,6 +103,8 @@ class LocalFeed extends React.Component {
         );
     };
 
+    // state change functions
+
     toggleVideoMuteUnmute = () => {
        let isMute = this.state.isVideoMute;
 
@@ -107,6 +116,7 @@ class LocalFeed extends React.Component {
            this.localFeed.unmuteVideo() :
            this.localFeed.muteVideo()
 
+           // log video activity
            isMute ?
            this.props.addLogs("Your Video is On") :
            this.props.addLogs("Your Video is Off")
@@ -124,6 +134,7 @@ class LocalFeed extends React.Component {
             this.localFeed.unmuteAudio() :
             this.localFeed.muteAudio()
 
+            // log audio activity
             isMute ?
             this.props.addLogs("Your Audio is On") :
             this.props.addLogs("Your Audio is Off")
@@ -181,10 +192,12 @@ class LocalFeed extends React.Component {
 
 export default LocalFeed;
 
+// helper functions
 function generateRandomUserId() {
     return Math.floor(Math.random() * 1000000001);
 }
 
+// functional components displaying buttons
 function HostButtons (props) {
     return (
         <>

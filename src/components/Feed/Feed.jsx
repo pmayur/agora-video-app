@@ -12,14 +12,15 @@ class Feed extends React.Component {
         super();
 
         this.state = {
-            logs:[],
-            feedsList: {},
+            logs:[],            // stores stream event logs
+            feedsList: {},      // stores remote streams against streamID's
         };
 
         //bindings
         this.addLogs = this.addLogs.bind(this);
     }
 
+    // adds logs to the logs state
     addLogs(log) {
         let logsCopy = this.state.logs;
         logsCopy.push(log);
@@ -49,8 +50,7 @@ class Feed extends React.Component {
 
         this.addLogs(`User: ${stream.getId()} joined the stream`)
 
-        // create a new object from the state
-        // add the new stream to the new object
+        // copy of feedsList state and stream to copy and update state
         let newList = this.state.feedsList;
         newList[stream.getId()] = stream;
 
@@ -61,16 +61,16 @@ class Feed extends React.Component {
 
     onStreamRemoved = (event) => {
 
-        let stream = event.stream;
-
+        let stream   = event.stream;
+        let newList  = this.state.feedsList;
         let streamId = stream.getId();
-        let newList = this.state.feedsList;
 
         delete newList[streamId];
 
         this.setState({
             feedsList: newList
-        }, () => {
+        },
+        () => {
             console.log("Remote stream is removed " + stream.getId());
             this.addLogs(`User:${streamId} left the stream`)
         })

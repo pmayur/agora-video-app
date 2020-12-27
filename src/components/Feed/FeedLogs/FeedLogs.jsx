@@ -4,6 +4,7 @@ class FeedLogs extends React.Component {
 
     render() {
         let logsList = this.props.logs;
+
         return (
             <div style={{margin:'auto'}}>
                 {

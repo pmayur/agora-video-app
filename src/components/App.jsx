@@ -20,6 +20,7 @@ class App extends React.Component {
         this.handleConfigChange = this.handleConfigChange.bind(this);
     }
 
+    // change state
     handleConfigChange (object) {
         const newToken   = object.token;
         const newChannel = object.channel;
@@ -31,6 +32,7 @@ class App extends React.Component {
     }
 
     render() {
+
         let parentStyle = {
             width: '100vw',
             height: '100vh',
@@ -39,38 +41,37 @@ class App extends React.Component {
             alignItems: 'center',
             overflowX: 'hidden'
         }
+
         return (
             <div style={parentStyle}>
                 <Router>
                     <Switch>
                         <Route
                             exact
-                            path="/"
-                            component={() => (
+                            path = "/"
+                            component = {() => (
                                 <ConfigForm
                                     handleConfigChange={this.handleConfigChange}
                                 />
                             )}
                         />
                         <Route
-                            exact
-                            path="/host"
-                            component={() => (
+                            path = "/host"
+                            component = {() => (
                                 <Feed
-                                    channel={this.state.channel}
-                                    token={this.state.token}
-                                    isHost={true}
+                                    channel = {this.state.channel}
+                                    token   = {this.state.token}
+                                    isHost  = {true}
                                 />
                             )}
                         />
                         <Route
-                            exact
-                            path="/audience"
-                            component={() => (
+                            path = "/audience"
+                            component = {() => (
                                 <Feed
-                                    channel={this.state.channel}
-                                    token={this.state.token}
-                                    isHost={false}
+                                    channel = {this.state.channel}
+                                    token   = {this.state.token}
+                                    isHost  = {false}
                                 />
                             )}
                         />
