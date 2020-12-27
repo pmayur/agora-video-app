@@ -41,10 +41,18 @@ class ConfigForm extends React.Component {
     }
 
     render() {
+        let parentStyle = {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'centre',
+            justifyContent: 'centre'
+        }
         return (
-            <div>
+            <div style={parentStyle}>
                 <label>
+                <div>
                     CHANNEL:
+                </div>
                     <input
                         name="channel"
                         value={this.state.channel}
@@ -53,7 +61,9 @@ class ConfigForm extends React.Component {
                 </label>
 
                 <label>
+                <div>
                     TOKEN:
+                </div>
                     <input
                         name="token"
                         value={this.state.token}
