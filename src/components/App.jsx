@@ -1,7 +1,7 @@
 import React from "react";
 
 import ConfigForm       from "./ConfigForm/ConfigForm";
-import TestComponent    from "./TestComponent" // placeholder component for routes
+import Feed             from "./Feed/Feed"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -47,14 +47,22 @@ class App extends React.Component {
                         exact
                         path="/host"
                         component={() => (
-                            <TestComponent channel={this.state.channel} /> //placeholder component for testing route
+                            <Feed
+                                channel={this.state.channel}
+                                token={this.state.token}
+                                isHost={true}
+                            />
                         )}
                     />
                     <Route
                         exact
                         path="/audience"
                         component={() => (
-                            <TestComponent channel={this.state.channel} /> //placeholder component for testing route
+                            <Feed
+                                channel={this.state.channel}
+                                token={this.state.token}
+                                isHost={false}
+                            />
                         )}
                     />
                 </Switch>
