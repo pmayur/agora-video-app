@@ -3,6 +3,7 @@ import AgoraRTC from "agora-rtc-sdk";
 
 import LocalFeed   from "./LocalFeed/LocalFeed"
 import RemoteFeeds from "./RemoteFeed/RemoteFeeds"
+import FeedLogs    from "./FeedLogs/FeedLogs"
 
 const CLIENT    = AgoraRTC.createClient({mode: "live", codec: "h264"})
 
@@ -11,8 +12,21 @@ class Feed extends React.Component {
         super();
 
         this.state = {
+            logs:[],
             feedsList: {},
         };
+
+        //bindings
+
+    }
+
+    addLogs(log) {
+        let logsCopy = this.state.logs;
+        logsCopy.push(log);
+
+        this.setState({
+            logs: logsCopy
+        })
     }
 
     subscribeToClientEvents = () => {
@@ -62,7 +76,9 @@ class Feed extends React.Component {
                 <RemoteFeeds
                     feedsList={this.state.feedsList}
                 />
-                <div id="feed-logs"></div>
+                <FeedLogs
+                    logs={this.state.logs}
+                />
             </div>
         );
     }
