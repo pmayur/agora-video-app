@@ -67,6 +67,7 @@ class LocalFeed extends React.Component {
             () => console.log("AgoraRTC client initialized"),
             (err) => console.log("AgoraRTC client initialization failed", err)
         );
+        this.props.onEvent();
     };
 
     joinClientChannel = () => {
@@ -78,10 +79,7 @@ class LocalFeed extends React.Component {
             USER_ID,
             (uid) => {
                 console.log("User " + uid + " join channel successfully");
-                let i = 0;
-                while(i < 1000000) {
-                    i++
-                }
+
                 CLIENT.publish(this.localFeed, function (err) {
                     console.error("Publish local stream error: " + err);
                 });
