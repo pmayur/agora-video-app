@@ -1,8 +1,8 @@
 import React from "react";
 import AgoraRTC from "agora-rtc-sdk";
 
-import LocalFeed   from "./LocalFeed"
-import RemoteFeeds from "./RemoteFeeds"
+import LocalFeed   from "./LocalFeed/LocalFeed"
+import RemoteFeeds from "./RemoteFeed/RemoteFeeds"
 
 const CLIENT    = AgoraRTC.createClient({mode: "live", codec: "h264"})
 
