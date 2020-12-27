@@ -31,42 +31,51 @@ class App extends React.Component {
     }
 
     render() {
+        let parentStyle = {
+            width: '100vw',
+            height: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        }
         return (
-            <Router>
-                <Switch>
-                    <Route
-                        exact
-                        path="/"
-                        component={() => (
-                            <ConfigForm
-                                handleConfigChange={this.handleConfigChange}
-                            />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/host"
-                        component={() => (
-                            <Feed
-                                channel={this.state.channel}
-                                token={this.state.token}
-                                isHost={true}
-                            />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/audience"
-                        component={() => (
-                            <Feed
-                                channel={this.state.channel}
-                                token={this.state.token}
-                                isHost={false}
-                            />
-                        )}
-                    />
-                </Switch>
-            </Router>
+            <div style={parentStyle}>
+                <Router>
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            component={() => (
+                                <ConfigForm
+                                    handleConfigChange={this.handleConfigChange}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path="/host"
+                            component={() => (
+                                <Feed
+                                    channel={this.state.channel}
+                                    token={this.state.token}
+                                    isHost={true}
+                                />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path="/audience"
+                            component={() => (
+                                <Feed
+                                    channel={this.state.channel}
+                                    token={this.state.token}
+                                    isHost={false}
+                                />
+                            )}
+                        />
+                    </Switch>
+                </Router>
+            </div>
         );
     }
 }

@@ -21,7 +21,7 @@ class RemoteFeeds extends React.Component {
         const feedsList = Object.values(this.props.feedsList);
 
         return (
-            <div style={{display:'flex'}}>
+            <div style={{display:'flex', width: 'auto'}}>
             {
                 feedsList.map(stream => {
                     let streamId = stream.getId();

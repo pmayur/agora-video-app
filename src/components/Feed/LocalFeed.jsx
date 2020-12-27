@@ -123,23 +123,48 @@ class LocalFeed extends React.Component {
     render() {
 
         let hostStyle = {
-            height: "400px", width: "500px"
+            height: "400px", width: "500px", padding: "10px"
         }
 
         let audienceStyle = {
-            height: "50px", width: "500px"
+            height: "0px", width: "500px", padding: "10px"
+        }
+
+        let infoStyle = {
+            padding: "10px",
+            width: "500px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "centre",
+            justifyContent: "centre",
+            textAlign: "centre"
         }
 
         return (
-            <>
-            <div
-                style={this.props.isHost ? hostStyle : audienceStyle}
-                id="local-feed"
-            ></div>
-
-            <button onClick={this.toggleVideoMuteUnmute}>Toggle Video</button>
-            <button onClick={this.toggleAudioMuteUnmute}>Toggle Audio</button>
-            </>
+            <div style={{ margin: 'auto'}}>
+                <div
+                    style={this.props.isHost ? hostStyle : audienceStyle}
+                    id="local-feed"
+                ></div>
+                <div style={infoStyle}>
+                    <div style={{textAlign:'center'}}>
+                        <h5>User in session: {USER_ID}</h5>
+                    </div>
+                    {
+                        this.props.isHost
+                        ? <HostButtons
+                            isAudioMute={this.state.isAudioMute}
+                            isVideoMute={this.state.isVideoMute}
+                            toggleAudioMuteUnmute={this.toggleAudioMuteUnmute}
+                            toggleVideoMuteUnmute={this.toggleVideoMuteUnmute}
+                        />
+                        : <AudienceButtons
+                            isAudioMute={this.state.isAudioMute}
+                            toggleAudioMuteUnmute={this.toggleAudioMuteUnmute}
+                        />
+                    }
+                </div>
+            </div>
         );
     }
 }
@@ -148,4 +173,37 @@ export default LocalFeed;
 
 function generateRandomUserId() {
     return Math.floor(Math.random() * 1000000001);
+}
+
+function HostButtons (props) {
+    return (
+        <>
+        <button onClick={props.toggleVideoMuteUnmute}>
+        {
+            props.isVideoMute
+            ? "Turn Video On"
+            : "Turn Video Off"
+        }
+        </button>
+        <button onClick={props.toggleAudioMuteUnmute}>
+        {
+            props.isAudioMute
+            ? "Turn Audio On"
+            : "Turn Audio Off"
+        }
+        </button>
+        </>
+    )
+}
+
+function AudienceButtons (props) {
+    return (
+        <button onClick={props.toggleAudioMuteUnmute}>
+        {
+            props.isAudioMute
+            ? "Ask a Question"
+            : "Got the Answer"
+        }
+        </button>
+    )
 }

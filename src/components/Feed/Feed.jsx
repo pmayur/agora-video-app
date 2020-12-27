@@ -57,8 +57,16 @@ class Feed extends React.Component {
     }
 
     render() {
+        let parentStyle = {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "centre",
+            justifyContent: "centre",
+            textAlign: "centre"
+        }
+
         return (
-            <>
+            <div style={parentStyle}>
                 <LocalFeed
                     client={CLIENT}
                     setLocalFeed={this.setLocalFeed}
@@ -69,7 +77,7 @@ class Feed extends React.Component {
                     feedsList={this.state.feedsList}
                 />
                 <div id="feed-logs"></div>
-            </>
+            </div>
         );
     }
 }
