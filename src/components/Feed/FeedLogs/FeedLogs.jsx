@@ -8,8 +8,8 @@ class FeedLogs extends React.Component {
         return (
             <div style={{margin:'auto'}}>
                 {
-                    logsList.map(log => {
-                        return <h5 style={{margin:'1px'}}>
+                    logsList.map((log,index) => {
+                        return <h5 style={{margin:'1px'}} key={index}>
                             {log}
                         </h5>
                     })
