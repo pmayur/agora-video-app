@@ -48,6 +48,9 @@ class LocalFeed extends React.Component {
                     this.localFeed.play("local-feed");
                     this.localFeed.muteAudio();
                     this.localFeed.muteVideo();
+
+                    this.props.addLogs("You Joined the stream")
+                    this.props.addLogs("Your Audio and Video is turned off")
                     resolve();
                 },
                 (err) => {
@@ -103,6 +106,10 @@ class LocalFeed extends React.Component {
            isMute ?
            this.localFeed.unmuteVideo() :
            this.localFeed.muteVideo()
+
+           isMute ?
+           this.props.addLogs("Your Video is On") :
+           this.props.addLogs("Your Video is Off")
        })
     }
 
@@ -116,6 +123,10 @@ class LocalFeed extends React.Component {
             isMute ?
             this.localFeed.unmuteAudio() :
             this.localFeed.muteAudio()
+
+            isMute ?
+            this.props.addLogs("Your Audio is On") :
+            this.props.addLogs("Your Audio is Off")
         })
     }
 
