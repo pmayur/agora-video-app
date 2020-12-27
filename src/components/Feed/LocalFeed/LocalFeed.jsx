@@ -48,7 +48,6 @@ class LocalFeed extends React.Component {
                     this.localFeed.play("local-feed");
                     this.localFeed.muteAudio();
                     this.localFeed.muteVideo();
-                    this.props.setLocalFeed(this.localFeed, USER_ID); //inform app component about local stream
                     resolve();
                 },
                 (err) => {

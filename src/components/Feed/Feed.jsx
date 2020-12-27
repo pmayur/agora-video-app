@@ -11,22 +11,8 @@ class Feed extends React.Component {
         super();
 
         this.state = {
-            localStr: {},
             feedsList: {},
         };
-
-        // bindings
-        this.setLocalFeed = this.setLocalFeed.bind(this);
-    }
-
-    setLocalFeed(localStr ,userId) {
-        let newLocalStr = {
-            [userId]: localStr
-        }
-
-        this.setState({
-            localStr: newLocalStr,
-        });
     }
 
     subscribeToClientEvents = () => {
