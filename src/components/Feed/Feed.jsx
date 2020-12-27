@@ -17,7 +17,7 @@ class Feed extends React.Component {
         };
 
         //bindings
-
+        this.addLogs = this.addLogs.bind(this);
     }
 
     addLogs(log) {
@@ -32,6 +32,7 @@ class Feed extends React.Component {
     subscribeToClientEvents = () => {
         CLIENT.on("stream-added", this.onNewStreamAdded);
         CLIENT.on("stream-subscribed", this.onNewStreamSubscribed);
+        CLIENT.on("peer-leave", this.onStreamRemoved);
     };
 
     onNewStreamAdded = (event) => {
@@ -46,6 +47,8 @@ class Feed extends React.Component {
         let stream = event.stream;
         console.log("Subscribing to new Stream")
 
+        this.addLogs(`User: ${stream.getId()} joined the stream`)
+
         // create a new object from the state
         // add the new stream to the new object
         let newList = this.state.feedsList;
@@ -55,6 +58,23 @@ class Feed extends React.Component {
                 feedsList: newList,
         });
     }
+
+    onStreamRemoved = (event) => {
+
+        let stream = event.stream;
+
+        let streamId = stream.getId();
+        let newList = this.state.feedsList;
+
+        delete newList[streamId];
+
+        this.setState({
+            feedsList: newList
+        }, () => {
+            console.log("Remote stream is removed " + stream.getId());
+            this.addLogs(`User:${streamId} left the stream`)
+        })
+    };
 
     render() {
         let parentStyle = {
@@ -72,9 +92,11 @@ class Feed extends React.Component {
                     setLocalFeed={this.setLocalFeed}
                     isHost={this.props.isHost}
                     onEvent={this.subscribeToClientEvents}
+                    addLogs={this.addLogs}
                 />
                 <RemoteFeeds
                     feedsList={this.state.feedsList}
+                    addLogs={this.addLogs}
                 />
                 <FeedLogs
                     logs={this.state.logs}
