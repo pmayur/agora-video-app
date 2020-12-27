@@ -37,6 +37,7 @@ class App extends React.Component {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            overflowX: 'hidden'
         }
         return (
             <div style={parentStyle}>
