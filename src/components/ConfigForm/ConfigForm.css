@@ -1,0 +1,25 @@
+.wide {
+    width: 300px;
+    height: 25px;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.label {
+    padding: 20px;
+}
+
+.btn {
+    width: 50%;
+    height: 30px;
+    margin-top: 20px;
+}
+
+.form-ctn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    width: 300px;
+    height: 100vh;
+}

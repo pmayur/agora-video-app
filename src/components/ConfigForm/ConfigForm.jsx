@@ -1,6 +1,8 @@
 import React from "react";
 import { withRouter } from 'react-router-dom'
 
+import "./ConfigForm.css"
+
 class ConfigForm extends React.Component {
     constructor() {
         super();
@@ -41,41 +43,41 @@ class ConfigForm extends React.Component {
     }
 
     render() {
-        let parentStyle = {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'centre',
-            justifyContent: 'centre'
-        }
         return (
-            <div style={parentStyle}>
-                <label>
-                <div>
-                    CHANNEL:
-                </div>
+            <div className="form-ctn">
+                <label className="label">
+                    <div>CHANNEL:</div>
                     <input
+                        className="wide"
                         name="channel"
                         value={this.state.channel}
                         onChange={this.handleInputChange}
                     />
                 </label>
 
-                <label>
-                <div>
-                    TOKEN:
-                </div>
+                <label className="label">
+                    <div>TOKEN:</div>
                     <input
+                        className="wide"
                         name="token"
                         value={this.state.token}
                         onChange={this.handleInputChange}
                     />
                 </label>
 
-                <button onClick={this.buttonClickHandler} id="host">
+                <button
+                    onClick={this.buttonClickHandler}
+                    className="btn"
+                    id="host"
+                >
                     JOIN AS A HOST
                 </button>
 
-                <button onClick={this.buttonClickHandler} id="audience">
+                <button
+                    onClick={this.buttonClickHandler}
+                    className="btn"
+                    id="audience"
+                >
                     JOIN AS AUDIENCE
                 </button>
             </div>
