@@ -4,8 +4,6 @@ import AgoraRTC from "agora-rtc-sdk";
 const USER_ID = generateRandomUserId();
 
 const APP_ID    = process.env.REACT_APP_APP_ID;
-const CHANNEL   = process.env.REACT_APP_CHANNEL;
-const TOKEN     = process.env.REACT_APP_TOKEN;
 
 class LocalFeed extends React.Component {
 
@@ -83,8 +81,8 @@ class LocalFeed extends React.Component {
         const CLIENT = this.props.client;
 
         CLIENT.join(
-            TOKEN,
-            CHANNEL,
+            this.props.token,
+            this.props.channel,
             USER_ID,
             (uid) => {
                 console.log("User " + uid + " join channel successfully");

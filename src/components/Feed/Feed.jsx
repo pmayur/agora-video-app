@@ -93,6 +93,8 @@ class Feed extends React.Component {
                     isHost={this.props.isHost}
                     onEvent={this.subscribeToClientEvents}
                     addLogs={this.addLogs}
+                    channel={this.props.channel}
+                    token={this.props.token}
                 />
                 <RemoteFeeds
                     feedsList={this.state.feedsList}
